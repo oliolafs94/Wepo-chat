@@ -1,3 +1,10 @@
 <h1>
   {{title}}
 </h1>
+
+<input type="text" [(ngModel)]="userName" />
+<button (click)="onLogin()">Login</button>
+
+<div [hidden]="!loginFailed"> 
+	Sorry! This username is already taken. Pick another one! 
+</div>
