@@ -9,8 +9,9 @@ import { ChatService } from "../chat.service.ts"
 export class LoginComponent implements OnInit {
   userName : string;
   loginFailed : boolean = false; 
+   chatService : ChatService;
 
-  constructor(chatService : ChatService) { }
+  constructor(private chatService : ChatService) { }
 
   ngOnInit() {
   }
