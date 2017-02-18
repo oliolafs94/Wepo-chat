@@ -36,4 +36,17 @@ export class ChatService {
 		});
 		return observable;
 	}
+
+  addRoom(roomName: string) Observable<boolean> {
+      const observable = new Observable(observer => {
+        //TODO: valigate that the room name is valid!
+        var param = {
+          room: roomName
+          };
+          this.socket.emit("joinroom", param, function(a : boolean, b) {
+              observer.next(a);
+          });
+        });
+        return observable;
+  }
 }
