@@ -12,6 +12,8 @@
         "favicon.ico"
       ],
       "index": "index.html",
+      "login" : "src/app/login/login.html",
+      "rooms" : "src/app/room-list/room-list.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
       "test": "test.ts",
