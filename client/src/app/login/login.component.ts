@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   userName: string;
-  loginFailed: false;
+  loginFailed: boolean = false;
   router: Router;
   // chatService : ChatService;
 

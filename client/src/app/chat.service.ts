@@ -56,9 +56,10 @@ export class ChatService {
 	    return observable;
 	}
 
-	getMessages(roomName: string): Observable<string[]> {
+	getMessages(): Observable<string[]> {
 	    const observable = new Observable( observer => {
-	    	this.socket.on('updatechat', (roomName), (messages) => {
+	    	this.socket.on('updatechat', (roomName, messages) => {
+	    		console.log(roomName + ' ' + messages);
 		        const strArr: string[] = [];
 		        strArr.push(messages);
 		        observer.next(strArr);
@@ -66,4 +67,14 @@ export class ChatService {
 	    });
 	    return observable;
 	}
+	// getMessages(roomName: string): Observable<string[]> {
+	//     const observable = new Observable( observer => {
+	//     	this.socket.on('updatechat', (roomName), (messages) => {
+	// 	        const strArr: string[] = [];
+	// 	        strArr.push(messages);
+	// 	        observer.next(strArr);
+	//       	});
+	//     });
+	//     return observable;
+	// }
 }
