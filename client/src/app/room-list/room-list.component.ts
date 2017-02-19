@@ -8,7 +8,6 @@ import { Router } from "@angular/router";
   styleUrls: ['./room-list.component.css']
 })
 export class RoomListComponent implements OnInit {
-
   rooms : string[];
   newRoomName: string;
 
@@ -23,14 +22,13 @@ export class RoomListComponent implements OnInit {
 
   onNewRoom() {
     if(this.newRoomName.length < 1) {
-
       return;
     }
 
     this.chatService.addRoom(this.newRoomName).subscribe(succeeded => {
       if(succeeded === true) {
-         this.router.navigate(["rooms", this.newRoomName]);
+         this.router.navigate(['room', this.newRoomName]);
       }
-    })
+    });
   }
 }

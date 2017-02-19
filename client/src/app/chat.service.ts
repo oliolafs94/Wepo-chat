@@ -15,7 +15,7 @@ export class ChatService {
 
 	login(userName : string) : Observable<boolean>{
 		let observable = new Observable( observer => {
-			this.socket.emit("adduser", userName, succeeded => {
+			this.socket.emit('adduser', userName, succeeded => {
 				console.log("Reply received.");
 	    		observer.next(succeeded);
 			});
@@ -24,12 +24,14 @@ export class ChatService {
 	}
 
 	getRoomList() : Observable<string[]> {
-		let observable = new Observable ( observer => {
-			this.socket.emit("rooms");
-			this.socket.on("roomlist", (lst) => {
-				let strArr: string[] = [];
-				for(var x in lst){
-					strArr.push(x);
+		const observable = new Observable ( observer => {
+			this.socket.emit('rooms');
+			this.socket.on('roomlist', (lst) => {
+				const strArr: string[] = [];
+				for(const x in lst){
+					if(lst.hasOwnProperty(x)){
+						strArr.push(x);
+					}
 				}
 				observer.next(strArr);
 			});
@@ -37,13 +39,14 @@ export class ChatService {
 		return observable;
 	}
 
-  addRoom(roomName: string) Observable<boolean> {
-      const observable = new Observable(observer => {
+  addRoom(roomName: string) : Observable<boolean> {
+      const observable = new Observable( observer => {
         //TODO: valigate that the room name is valid!
-        var param = {
-          room: roomName
+        const param = {
+          room : roomName
           };
-          this.socket.emit("joinroom", param, function(a : boolean, b) {
+
+          this.socket.emit('joinroom', param, function(a, b) {
               observer.next(a);
           });
         });
