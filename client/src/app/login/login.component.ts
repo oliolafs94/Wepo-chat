@@ -1,19 +1,19 @@
-import { Component, OnInit } from "@angular/core";
-import { ChatService } from "../chat.service";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { ChatService } from '../chat.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  userName : string;
-  loginFailed : boolean = false;
-  router : Router;
-  //chatService : ChatService;
+  userName: string;
+  loginFailed: false;
+  router: Router;
+  // chatService : ChatService;
 
-  constructor(private chatService : ChatService, router : Router) {
+  constructor(private chatService: ChatService, router: Router) {
     this.chatService = chatService;
   }
 
@@ -21,13 +21,13 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    console.log("Login called in component");
+    console.log('Login called in component');
     this.chatService.login(this.userName).subscribe(succeeded => {
-      console.log("Success!!");
+      console.log('Success!!');
       this.loginFailed = !succeeded;
-      if(succeeded === true) {
-        this.router.navigate(["/rooms"]);
-        //TODO: Redirect to  RoomListcompnent
+      if (succeeded === true) {
+        this.router.navigate(['/rooms']);
+        // TODO: Redirect to  RoomListcompnent
       }
     });
   }

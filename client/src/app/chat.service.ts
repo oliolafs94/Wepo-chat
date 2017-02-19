@@ -1,55 +1,55 @@
 import { Injectable } from '@angular/core';
-import * as io from "socket.io-client";
-import { Observable } from "rxjs/Observable";
+import * as io from 'socket.io-client';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ChatService {
-  socket : any;
+socket: any;
 
-  constructor() {
-	this.socket = io("http://localhost:8080");
-  	this.socket.on("connect", function(){
-    	console.log("connect")
+constructor( ) {
+	this.socket = io('http://localhost:8080');
+	this.socket.on('connect', function() {
+    	console.log('connect');
 	});
-  }
+}
 
-	login(userName : string) : Observable<boolean>{
-		let observable = new Observable( observer => {
-			this.socket.emit('adduser', userName, succeeded => {
-				console.log("Reply received.");
-	    		observer.next(succeeded);
-			});
+login(userName: string): Observable<boolean> {
+	const observable = new Observable( observer => {
+		this.socket.emit('adduser', userName, succeeded => {
+			console.log('Reply received.');
+		observer.next(succeeded);
 		});
-		return observable;
-	}
+	});
+	return observable;
+}
 
-	getRoomList() : Observable<string[]> {
-		const observable = new Observable ( observer => {
-			this.socket.emit('rooms');
-			this.socket.on('roomlist', (lst) => {
-				const strArr: string[] = [];
-				for(const x in lst){
-					if(lst.hasOwnProperty(x)){
-						strArr.push(x);
-					}
+getRoomList(): Observable<string[]> {
+  const observable = new Observable ( observer => {
+  this.socket.emit('rooms');
+		this.socket.on('roomlist', (lst) => {
+			const strArr: string[] = [];
+			for (const x in lst) {
+				if (lst.hasOwnProperty(x)) {
+					strArr.push(x);
 				}
-				observer.next(strArr);
-			});
+			}
+			observer.next(strArr);
 		});
-		return observable;
-	}
+	});
+	return observable;
+}
 
-  addRoom(roomName: string) : Observable<boolean> {
-      const observable = new Observable( observer => {
-        //TODO: valigate that the room name is valid!
-        const param = {
-          room : roomName
-          };
+addRoom(roomName: string): Observable<boolean> {
+  const observable = new Observable( observer => {
+    // TODO: valigate that the room name is valid!
+    const param = {
+      room : roomName
+      };
 
-          this.socket.emit('joinroom', param, function(a, b) {
-              observer.next(a);
-          });
-        });
-        return observable;
-  }
+      this.socket.emit('joinroom', param, function(a, b) {
+          observer.next(a);
+      });
+    });
+    return observable;
+}
 }
