@@ -7,13 +7,14 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  userName : string;
-  loginFailed : boolean = false;
 
-  constructor(private chatService : ChatService, private router : Router) {
-    //this.chatService = chatService;
-    //this.router = router;
+export class LoginComponent implements OnInit {
+  userName: string;
+  loginFailed: boolean;
+
+  constructor(private chatService: ChatService, private router: Router) {
+    // this.chatService = chatService;
+    // this.router = router;
   }
 
   ngOnInit() { }
@@ -23,10 +24,10 @@ export class LoginComponent implements OnInit {
     this.chatService.login(this.userName).subscribe(succeeded => {
       console.log('Success!!');
       this.loginFailed = !succeeded;
-      if(succeeded === true) {
-        this.router.navigate(["/rooms"]);
+      if (succeeded === true) {
+        this.router.navigate(['/rooms']);
 
-        //TODO: Redirect to  RoomListcompnent
+        // TODO: Redirect to  RoomListcompnent
       }
     });
   }
