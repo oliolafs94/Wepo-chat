@@ -23,7 +23,7 @@ import { ChatService } from './chat.service'
     FormsModule,
     HttpModule,
     RouterModule.forRoot([{
-      path: ',
+      path: '',
       redirectTo: 'login',
       pathMatch: 'full'
      }, {
