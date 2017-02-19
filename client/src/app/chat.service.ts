@@ -15,7 +15,7 @@ export class ChatService {
   }
 
 	login(userName : string) : Observable<boolean>{
-		let observable = new Observable( observer => {
+		const observable = new Observable( observer => {
 			this.socket.emit('adduser', userName, succeeded => {
 				console.log("Reply received.");
 	    		observer.next(succeeded);
@@ -54,4 +54,17 @@ export class ChatService {
         });
         return observable;
     }
+
+    getMessages(roomName: string) : Observable<string[]> {
+	    const observable = new Observable( observer => {
+	    	this.socket.on('updatechat', (roomName, messages) => {
+		        const strArr: string[] = [];
+		        strArr.push(messages);
+		        observer.next(strArr);
+	      	});
+	    });
+	    return observable;
+  	}
+
+  	
 }
