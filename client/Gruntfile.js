@@ -1,6 +1,8 @@
-module.export = function (grunt) {
-	grunt.loadNpmTask('grunt-tslint');
+module.export = function(grunt) {
+
+	// Project configuration
 	var taskConfig = {
+		pgk: grunt.file.readJSON('package.json'),
 		tslint:  {
 			src: ['src/**/*.ts'],
 			gruntfile: ['Gruntfile.js'],
@@ -12,5 +14,7 @@ module.export = function (grunt) {
 		}
 	};
 	grunt.initConfig(taskConfig);
-	grunt.registerTask('default', ['tslint']);
+	grunt.registerTask('default', ['tslint']); 
+	//grunt.registerTask('default', ['tslint']);
+	grunt.loadNpmTask('grunt-tslint');
 };
