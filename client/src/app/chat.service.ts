@@ -75,8 +75,6 @@ export class ChatService {
 
 	addRoom(roomName: string): Observable<boolean> {
 	  const observable = new Observable( observer => {
-	    // TODO: valigate that the room name is valid!
-
 	    const param = {
 	      room: roomName
 	      };
@@ -89,24 +87,18 @@ export class ChatService {
 	}
 
 	getMessages(): Observable<string[]> {
-	    const observable = new Observable( observer => {
-	    	this.socket.on('updatechat', (roomName, messages) => {
-	    		console.log(roomName + ' ' + messages);
-		        const strArr: string[] = [];
-		        strArr.push(messages);
-		        observer.next(strArr);
-	      	});
-	    });
-	    return observable;
-	}
-	// getMessages(roomName: string): Observable<string[]> {
-	//     const observable = new Observable( observer => {
-	//     	this.socket.on('updatechat', (roomName), (messages) => {
-	// 	        const strArr: string[] = [];
-	// 	        strArr.push(messages);
-	// 	        observer.next(strArr);
-	//       	});
-	//     });
-	//     return observable;
-	// }
+      const observable = new Observable( observer => {
+        this.socket.on('updatechat', (roomName, messages) => {
+          console.log(roomName + ' ' + messages);
+          const strArr: string[] = [];
+          for (const x in messages) {
+		    if (messages.hasOwnProperty(x)) {
+		  	  strArr.push(messages);
+		    }
+		  }
+          observer.next(strArr);
+        });
+      });
+      return observable; 
+  	}
 }
