@@ -1,8 +1,7 @@
-<html>
 <!-- <p> -->
   <!-- Room works! -->
 <!-- </p> -->
-<head>
+<!-- <head>
   <title>Chat </title>
   <link type="text/css" rel="stylesheet" href="style.css" />
 </head>
@@ -22,12 +21,18 @@
     </form>
   </div>
   <script type="text/javascript"></script>
-</body>
+</body> -->
 
 <div>{{roomId}}</div>
-<div>{{messages}}</div>
-<<<<<<< HEAD
-<div>{{userlist}}</div>
-=======
-<div>{{userlist}}</div>
->>>>>>> c5f825a1f5edf5be62dabd3e43e8e02bdef01bf3
+
+<ul>
+  <li *ngFor='let message of messages'>
+    {{message}}
+  </li>
+</ul> 
+
+<ul>
+  <li *ngFor='let user of users'>
+    {{user}}
+  </li>
+</ul> 
