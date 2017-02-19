@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class RoomComponent implements OnInit {
 
   roomId : string;
+  user: string;
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 

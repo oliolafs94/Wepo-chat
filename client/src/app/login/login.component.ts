@@ -10,15 +10,13 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   userName : string;
   loginFailed : boolean = false;
-  router : Router;
-  //chatService : ChatService;
 
-  constructor(private chatService : ChatService, router : Router) {
-    this.chatService = chatService;
+  constructor(private chatService : ChatService, private router : Router) {
+    //this.chatService = chatService;
+    //this.router = router;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onLogin() {
     console.log("Login called in component");
@@ -27,6 +25,7 @@ export class LoginComponent implements OnInit {
       this.loginFailed = !succeeded;
       if(succeeded === true) {
         this.router.navigate(["/rooms"]);
+
         //TODO: Redirect to  RoomListcompnent
       }
     });
