@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-room',
@@ -7,7 +7,6 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
-
   roomId : string;
   user: string;
 

@@ -1,19 +1,4 @@
 <h2>Welcome to chat!<h2>
-<!--	
-<form #f="ngForm" >
-	<label for="userName">Username: </label>
-	<input name="userName" 
-			id="userName" 
-			[(ngModel)]="userName" required />
-	<input name="address"
-			[(ngModel)]="address" />
-
-
-	<button type="button" (click)="onSubmit(f)">
-		Save
-	</button>
-</form>
--->
 
 <input type="text" [(ngModel)]="userName" />
 <button (click)="onLogin()">Login</button>

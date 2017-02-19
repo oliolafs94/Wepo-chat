@@ -6,6 +6,7 @@ module.exports = function(grunt) {
       src: ['src/**/*.ts'],
       gruntfile: ['Gruntfile.js'],
       options: {
+      	"indent": ["error", 4],
         configuration: "tslint.json",
         force: true,
         fix: false

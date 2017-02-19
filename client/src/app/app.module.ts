@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { RoomComponent } from './room/room.component';
-import { ChatService } from './chat.service'
+import { ChatService } from './chat.service';
 
 @NgModule({
   declarations: [
