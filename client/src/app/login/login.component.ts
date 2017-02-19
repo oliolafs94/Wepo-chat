@@ -12,10 +12,7 @@ export class LoginComponent implements OnInit {
   userName: string;
   loginFailed: boolean;
 
-  constructor(private chatService: ChatService, private router: Router) {
-    // this.chatService = chatService;
-    // this.router = router;
-  }
+  constructor(private chatService: ChatService, private router: Router) { }
 
   ngOnInit() { }
 
@@ -26,8 +23,6 @@ export class LoginComponent implements OnInit {
       this.loginFailed = !succeeded;
       if (succeeded === true) {
         this.router.navigate(['/rooms']);
-
-        // TODO: Redirect to  RoomListcompnent
       }
     });
   }
