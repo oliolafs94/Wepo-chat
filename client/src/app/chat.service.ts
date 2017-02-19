@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class ChatService {
   socket : any;
+  roomOK : false;
 
   constructor() {
 	this.socket = io("http://localhost:8080");
@@ -42,6 +43,7 @@ export class ChatService {
   addRoom(roomName: string) : Observable<boolean> {
       const observable = new Observable( observer => {
         //TODO: valigate that the room name is valid!
+
         const param = {
           room : roomName
           };
@@ -51,5 +53,5 @@ export class ChatService {
           });
         });
         return observable;
-  }
+    }
 }
