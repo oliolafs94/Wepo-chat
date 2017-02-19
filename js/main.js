@@ -1,12 +1,12 @@
 angular.module("ChatApp", ["ng", "ngRoute"]).config(function($routeProvider){
 
-    $routeProvider.when("/index", {
+    $routeProvider.when("../src/app/login", {
         templateUrl: "/views/home.html",
         controller: "HomeCtrl"
     }).when("/rooms/:roomId", {
         templateUrl: "views/room.html",
         controller: "RoomCtrl"
-    }).otherwise({ redirectTo: "/index"});
+    }).otherwise({ redirectTo: "../src/app/login/login"});
 });
 
 angular.module("ChatApp").controller("HomeCtrl",["$scope", "$http",

@@ -14,7 +14,6 @@ export class RoomComponent implements OnInit {
 
   ngOnInit() {
     this.roomId = this.route.snapshot.params['id'];
-
   }
 
 }

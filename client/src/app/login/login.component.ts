@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   userName : string;
   loginFailed : boolean = false;
+  router : Router;
   //chatService : ChatService;
 
   constructor(private chatService : ChatService, router : Router) {
