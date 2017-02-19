@@ -41,6 +41,22 @@ export class ChatService {
 		return observable;
 	}
 
+	getUserList(): Observable<string[]> {
+	  const observable = new Observable ( observer => {
+	  this.socket.emit('users');
+			this.socket.on('userlist', (lst) => {
+				const strArr: string[] = [];
+				for (const x in lst) {
+					if (lst.hasOwnProperty(x)) {
+						strArr.push(x);
+					}
+				}
+				observer.next(strArr);
+			});
+		});
+		return observable;
+	}
+
 	addRoom(roomName: string): Observable<boolean> {
 	  const observable = new Observable( observer => {
 	    // TODO: valigate that the room name is valid!
