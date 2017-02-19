@@ -44,11 +44,27 @@ export class ChatService {
 	getUserList(): Observable<string[]> {
 	  const observable = new Observable ( observer => {
 	  this.socket.emit('users');
-			this.socket.on('userlist', (lst) => {
+			this.socket.on('userlist', (users) => {
 				const strArr: string[] = [];
-				for (const x in lst) {
-					if (lst.hasOwnProperty(x)) {
-						strArr.push(x);
+				for(let i = 0; i < users.length; i++){
+					if (users.hasOwnProperty(i)) {
+						strArr.push(users[i]);
+					}
+				}
+				observer.next(strArr);
+			});
+		});
+		return observable;
+	}
+
+	getUsersInRoom(): Observable<string[]> {
+	  const observable = new Observable ( observer => {
+	  this.socket.emit('joinroom');
+			this.socket.on('updateusers', (users, obs) => {
+				const strArr: string[] = [];
+				for (const x in users) {
+					if (users.hasOwnProperty(x)) {
+						strArr.push(users);
 					}
 				}
 				observer.next(strArr);

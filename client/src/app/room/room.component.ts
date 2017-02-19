@@ -8,13 +8,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class RoomComponent implements OnInit {
   roomId: string;
-  userId: string;
+  //userlist: string;
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.roomId = this.route.snapshot.params['id'];
-    this.userId = this.route.snapshot.params['userId'];
   }
 
 }
