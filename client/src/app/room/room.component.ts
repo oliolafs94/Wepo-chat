@@ -12,6 +12,7 @@ export class RoomComponent implements OnInit {
   users: string[];
   messages: string[];
   newMessage: string;
+  exitFailed: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute, private chatService: ChatService) { }
 
@@ -26,6 +27,10 @@ export class RoomComponent implements OnInit {
     });
   }
 
+  onExitRoom(){
+      this.chatService.exitRoom(this.roomName);
+      this.router.navigate(['/rooms']);
+    }
   // sendMessage() {
   //   const data = {
   //     room: this.roomName,

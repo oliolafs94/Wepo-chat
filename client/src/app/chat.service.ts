@@ -25,6 +25,10 @@ export class ChatService {
 		return observable;
 	}
 
+	exitRoom(room : string) {
+			this.socket.emit('partroom', room);
+		}
+
 	getRoomList(): Observable<string[]> {
 	  const observable = new Observable ( observer => {
 	  this.socket.emit('rooms');
@@ -105,7 +109,7 @@ export class ChatService {
           observer.next(strArr);
         });
       });
-      return observable; 
+      return observable;
   	}
 
   	// sendMessage(data: string): Observable<string[]> {
@@ -117,6 +121,6 @@ export class ChatService {
 	  //         observer.next(a);
 	  //     });
    //    });
-   //    return observable; 
+   //    return observable;
   	// }
 }
