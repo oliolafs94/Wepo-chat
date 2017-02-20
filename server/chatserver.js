@@ -40,7 +40,7 @@ io.sockets.on('connection', function (socket) {
 	socket.on('joinroom', function (joinObj, fn) {
 		console.log("Attempting to join a room");
 		console.log(joinObj);
-
+		console.log(joinObj.room);
 		var room = joinObj.room;
 		var pass = joinObj.pass;
 		var accepted = true;

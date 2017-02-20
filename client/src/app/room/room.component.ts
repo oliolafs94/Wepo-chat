@@ -12,8 +12,8 @@ export class RoomComponent implements OnInit {
   users: string[];
   messages: string[];
   newMessage: string;
-  exitFailed: boolean;
-  isValid: boolean;
+  // exitFailed: boolean;
+  // isValid: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute, private chatService: ChatService) { }
 
@@ -28,12 +28,12 @@ export class RoomComponent implements OnInit {
     });
   }
 
-  onExitRoom() {
-      this.chatService.exitRoom(this.roomName);
-      this.router.navigate(['/rooms']);
-    }
+  // onExitRoom() {
+  //     this.chatService.exitRoom(this.roomName);
+  //     this.router.navigate(['/rooms']);
+  //   }
 
-  sendMessage() {
-    this.chatService.sendMessage(this.roomName, this.newMessage);
-  }
+  // sendMessage() {
+  //   this.chatService.sendMessage(this.roomName, this.newMessage);
+  // }
 }
