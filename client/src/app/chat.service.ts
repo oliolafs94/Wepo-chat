@@ -87,8 +87,8 @@ export class ChatService {
 	      room: roomName
 	    };
 
-	      this.socket.emit('joinroom', param, function(a, b) {
-	          observer.next(a);
+	      this.socket.emit('joinroom', param, function(a: boolean, b) {
+	          observer.next(param);
 	      });
 	    });
 	    return observable;

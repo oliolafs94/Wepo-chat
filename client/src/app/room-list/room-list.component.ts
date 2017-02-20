@@ -24,14 +24,21 @@ export class RoomListComponent implements OnInit {
   }
 
   onNewRoom() {
+
+    // if(roomName === undefined) {
+    //   roomInfo = roomName;
+    //   console.log(roomInfo);
+    // }
+
     if (this.newRoomName.length < 1) {
       return;
     }
 
     this.chatService.addRoom(this.newRoomName).subscribe(succeeded => {
       if (succeeded === true) {
-         this.router.navigate(['/room', this.newRoomName]);
+         this.router.navigate(['rooms', this.newRoomName]);
       }
     });
+    this.newRoomName = '';
   }
 }

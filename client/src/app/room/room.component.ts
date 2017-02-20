@@ -28,7 +28,7 @@ export class RoomComponent implements OnInit {
     });
   }
 
-  onExitRoom(){
+  onExitRoom() {
       this.chatService.exitRoom(this.roomName);
       this.router.navigate(['/rooms']);
     }
