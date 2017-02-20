@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 export class ChatService {
 	socket: any;
 	roomOK: false;
+	isValid: boolean;
 
 
 	constructor( ) {
@@ -25,8 +26,8 @@ export class ChatService {
 		return observable;
 	}
 
-	exitRoom(room : string) {
-			this.socket.emit('partroom', room);
+	exitRoom(roomName: string) {
+			this.socket.emit('partroom', roomName);
 		}
 
 	getRoomList(): Observable<string[]> {
@@ -112,15 +113,28 @@ export class ChatService {
       return observable;
   	}
 
-  	// sendMessage(data: string): Observable<string[]> {
-   //    const observable = new Observable( observer => {
-   //    	const param = {
-	  //     room: roomName
-	  //   };
-   //      this.socket.emit('joinroom', param, function(a, b) {
-	  //         observer.next(a);
-	  //     });
-   //    });
-   //    return observable;
-  	// }
+  	sendMessage(roomName: string, newMessage: string): Observable<string[]> {
+      const observable = new Observable( observer => {
+      	this.socket.emit('sendchat');
+      	const data = {
+      		room: roomName,
+      		msg: newMessage
+	    };
+	    if (newMessage.length >= 200) {
+		    this.isValid = true;
+		    console.log('Message is valid');
+		}
+
+	    if (this.isValid === true) {
+	    	const strArr: string[] = [];
+	        console.log('Sending message');
+	        console.log(newMessage);
+
+	        strArr.push(newMessage);
+	      }
+
+        this.socket.on('sendmsg', data);
+      });
+      return observable;
+  	}
 }

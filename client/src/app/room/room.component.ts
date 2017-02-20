@@ -13,6 +13,7 @@ export class RoomComponent implements OnInit {
   messages: string[];
   newMessage: string;
   exitFailed: boolean;
+  isValid: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute, private chatService: ChatService) { }
 
@@ -31,13 +32,8 @@ export class RoomComponent implements OnInit {
       this.chatService.exitRoom(this.roomName);
       this.router.navigate(['/rooms']);
     }
-  // sendMessage() {
-  //   const data = {
-  //     room: this.roomName,
-  //     msg: this.newMessage
-  //   }
-  //   this.chatService.sendMessage(data);
-  //   console.log("Sending message");
-  //   console.log(this.newMessage);
-  // }
+
+  sendMessage() {
+    this.chatService.sendMessage(this.roomName, this.newMessage);
+  }
 }
