@@ -18,14 +18,14 @@ export class RoomComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private chatService: ChatService) { }
 
   ngOnInit() {
-    this.roomName = this.route.snapshot.params['id'];
+    this.roomName = this.route.snapshot.params['roomName'];
 
-    this.chatService.getUsersInRoom(this.roomName).subscribe( lst => {
-      this.users = lst;
-    });
-    this.chatService.getMessages(this.roomName).subscribe( lst => {
-      this.messages = lst;
-    });
+    // this.chatService.getUsersInRoom(this.roomName).subscribe( lst => {
+    //   this.users = lst;
+    // });
+    // this.chatService.getMessages(this.roomName).subscribe( lst => {
+    //   this.messages = lst;
+    // });
   }
 
   // onExitRoom() {

@@ -27,8 +27,8 @@ export class ChatService {
 	}
 
 	exitRoom(roomName: string) {
-			this.socket.emit('partroom', roomName);
-		}
+		this.socket.emit('partroom', roomName);
+	}
 
 	getRoomList(): Observable<string[]> {
 	  const observable = new Observable ( observer => {
@@ -84,10 +84,15 @@ export class ChatService {
 	addRoom(roomName: string): Observable<boolean> {
 	  const observable = new Observable( observer => {
 	    const param = {
-	      room: roomName
+	      room: roomName,
+	      pass: undefined
 	    };
+	    if (roomName.length < 1 || roomName === undefined) {
+      		return;
+    	}
 
-	      this.socket.emit('joinroom', param, function(a: boolean, b) {
+	      this.socket.emit('joinroom', (param), (succeeded) => {
+	      	console.log(param);
 	          observer.next(param);
 	      });
 	    });
