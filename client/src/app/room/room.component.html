@@ -1,11 +1,7 @@
 <!-- <p> -->
   <!-- Room works! -->
 <!-- </p> -->
-<!-- <head>
-  <title>Chat </title>
-  <link type="text/css" rel="stylesheet" href="style.css" />
-</head>
-<body>
+<!--
   <div id="wrapper">
     <div id="menu">
       <p class="welcome" Welcome to chat, <b></b></p>
@@ -20,8 +16,6 @@
       <input name="submitmsg" type="submit" id="submitmsg" value="Send"/>
     </form>
   </div>
-  <script type="text/javascript"></script>
-</body> -->
 
 <div>{{roomId}}</div>
 
@@ -29,10 +23,10 @@
   <li *ngFor='let message of messages'>
     {{message}}
   </li>
-</ul> 
+</ul>
 
 <ul>
   <li *ngFor='let user of users'>
     {{user}}
   </li>
-</ul> 
+</ul>
