@@ -8,19 +8,31 @@ import { ChatService } from '../chat.service';
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
-  roomId: string;
+  roomName: string;
   users: string[];
   messages: string[];
+  newMessage: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private chatService: ChatService) { }
 
   ngOnInit() {
-    this.roomId = this.route.snapshot.params['id'];
-    this.chatService.getUsersInRoom().subscribe( lst => {
+    this.roomName = this.route.snapshot.params['id'];
+
+    this.chatService.getUsersInRoom(this.roomName).subscribe( lst => {
       this.users = lst;
     });
-    this.chatService.getMessages().subscribe( lst => {
+    this.chatService.getMessages(this.roomName).subscribe( lst => {
       this.messages = lst;
     });
   }
+
+  // sendMessage() {
+  //   const data = {
+  //     room: this.roomName,
+  //     msg: this.newMessage
+  //   }
+  //   this.chatService.sendMessage(data);
+  //   console.log("Sending message");
+  //   console.log(this.newMessage);
+  // }
 }

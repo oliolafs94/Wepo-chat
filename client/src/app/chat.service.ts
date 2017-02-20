@@ -57,19 +57,22 @@ export class ChatService {
 		return observable;
 	}
 
-	getUsersInRoom(): Observable<string[]> {
+	getUsersInRoom(roomName: string): Observable<string[]> {
 	  const observable = new Observable ( observer => {
-	  this.socket.emit('joinroom');
-			this.socket.on('updateusers', (users, obs) => {
-				const strArr: string[] = [];
-				for (const x in users) {
-					if (users.hasOwnProperty(x)) {
-						strArr.push(users);
-					}
+	    this.socket.emit('joinroom');
+	    const param = {
+	        room: roomName
+	    };
+		this.socket.on('updateusers', param, (users, obs) => {
+			const strArr: string[] = [];
+			for (const x in users) {
+				if (users.hasOwnProperty(x)) {
+					strArr.push(users);
 				}
-				observer.next(strArr);
-			});
+			}
+			observer.next(strArr);
 		});
+	  });
 		return observable;
 	}
 
@@ -77,7 +80,7 @@ export class ChatService {
 	  const observable = new Observable( observer => {
 	    const param = {
 	      room: roomName
-	      };
+	    };
 
 	      this.socket.emit('joinroom', param, function(a, b) {
 	          observer.next(a);
@@ -86,9 +89,12 @@ export class ChatService {
 	    return observable;
 	}
 
-	getMessages(): Observable<string[]> {
+	getMessages(roomName: string): Observable<string[]> {
       const observable = new Observable( observer => {
-        this.socket.on('updatechat', (roomName, messages) => {
+      	const param = {
+	      room: roomName
+	    };
+        this.socket.on('updatechat', param, (messages) => {
           console.log(roomName + ' ' + messages);
           const strArr: string[] = [];
           for (const x in messages) {
@@ -101,4 +107,16 @@ export class ChatService {
       });
       return observable; 
   	}
+
+  	// sendMessage(data: string): Observable<string[]> {
+   //    const observable = new Observable( observer => {
+   //    	const param = {
+	  //     room: roomName
+	  //   };
+   //      this.socket.emit('joinroom', param, function(a, b) {
+	  //         observer.next(a);
+	  //     });
+   //    });
+   //    return observable; 
+  	// }
 }
